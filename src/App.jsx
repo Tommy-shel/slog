@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { User, Code, BarChart3, Globe, Download, Facebook, Twitter, Instagram, Linkedin, Mail, Rss, Video, Palette, MessageCircle } from 'lucide-react';
 import secImg from './secImg.png'; 
 import Spline from "@splinetool/react-spline";
+import Slog from './SLog.png';
 import webdesign from './webdesign.png';
 import ecom1 from './ecom1.png';
 import ecom2 from './ecom2.png';
@@ -49,7 +50,9 @@ const projects = [
         
      <nav className="relative bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-3xl shadow-lg m-4">
       <div className="flex justify-between items-center px-8 py-4">
-        <div className="text-2xl font-bold">SLOG</div>
+        <div className="text-2xl h-10 flex justify-center items-center font-bold">
+          <img src={Slog} className="w-26 h-26" alt="Slog" />
+          </div>
         
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6">
