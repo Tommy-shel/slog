@@ -2,77 +2,154 @@ import React, { useState } from "react";
 import { User, Code, BarChart3, Globe, Download, Facebook, Twitter, Instagram, Linkedin, Mail, Rss, Video, Palette, MessageCircle } from 'lucide-react';
 import secImg from './secImg.png'; 
 import Spline from "@splinetool/react-spline";
+import webdesign from './webdesign.png';
+import ecom1 from './ecom1.png';
+import ecom2 from './ecom2.png';
 function App() {
 
+const projects = [
+  {
+    id: 1,
+    title: 'Web Design Project',
+    url: 'https://portal1234.my.canva.site/dagoxeuuhe0',
+    img: webdesign, 
+    icon: Code
+  },
+  {
+    id: 2,
+    title: 'ecommerce website Project',
+    url: 'https://riva7.odoo.com/',
+    img: ecom1, 
+    icon: Code
+  },
+  {
+    id: 3,
+    title: 'Web development Project',
+    url: 'https://www.orra.co.in/?srsltid=AfmBOoqEnvSksYtXU_SSDMtZhrQzMROM8_7ISJHuMV6q4YOMeF29F0Qq',
+    img: ecom2, 
+    icon: Code
+  }
+];
 
-  const projects = [
-    {
-      id: 1,
-      title: 'Web Design Project',
-      url: 'https://portal1234.my.canva.site/dagoxeuuhe0',
-      icon: Code
-    },
-    {
-      id: 2,
-      title: 'ecommerce website Project',
-      url: 'https://riva7.odoo.com/',
-      icon: Code
-    },
-    {
-      id: 3,
-      title: 'Web development Project',
-      url: 'https://www.orra.co.in/?srsltid=AfmBOoqEnvSksYtXU_SSDMtZhrQzMROM8_7ISJHuMV6q4YOMeF29F0Qq',
-      icon: Code
-    }
-  ];
 
-  
+   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
 
   return (
     <div className="min-h-screen  text-gray-800 font-sans">
       {/* Navigation */}
         
-      <nav className="flex justify-between bg-gradient-to-r from-purple-600 to-blue-600 items-center px-8 py-4 text-white font-semibold rounded-3xl shadow-lg m-4">
-  <div className="text-2xl font-bold">SLOG</div>
-  <ul className="hidden md:flex space-x-6">
-    <li className="hover:text-purple-400 cursor-pointer">
-      <a href="#home">Home</a>
-    </li>
-    <li className="hover:text-purple-400 cursor-pointer">
-      <a href="#aboutus">About us</a>
-    </li>
-    <li className="hover:text-purple-400 cursor-pointer">
-      <a href="#projects">Projects</a>
-    </li>
-    <li className="hover:text-purple-400 cursor-pointer">
-      <a href="#testimonials">Testimonials</a>
-    </li>
-    <li className="hover:text-purple-400 cursor-pointer">
-      <a href="#contactus">Contact us</a>
-    </li>
-  </ul>
-  <div className="md:hidden text-2xl cursor-pointer">☰</div>
-</nav>
-
+     <nav className="relative bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-3xl shadow-lg m-4">
+      <div className="flex justify-between items-center px-8 py-4">
+        <div className="text-2xl font-bold">SLOG</div>
+        
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex space-x-6">
+          <li className="hover:text-purple-400 cursor-pointer">
+            <a href="#home">Home</a>
+          </li>
+          <li className="hover:text-purple-400 cursor-pointer">
+            <a href="#aboutus">About us</a>
+          </li>
+          <li className="hover:text-purple-400 cursor-pointer">
+            <a href="#projects">Projects</a>
+          </li>
+          <li className="hover:text-purple-400 cursor-pointer">
+            <a href="#testimonials">Testimonials</a>
+          </li>
+          <li className="hover:text-purple-400 cursor-pointer">
+            <a href="#contactus">Contact us</a>
+          </li>
+        </ul>
+        
+        {/* Mobile Menu Button */}
+        <div 
+          className="md:hidden text-2xl cursor-pointer hover:text-purple-300 transition-colors"
+          onClick={toggleMenu}
+        >
+          {isMenuOpen ? '✕' : '☰'}
+        </div>
+      </div>
+      
+      {/* Mobile Dropdown Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-b-3xl shadow-lg z-50">
+          <ul className="flex flex-col py-4">
+            <li className="hover:bg-purple-700 cursor-pointer">
+              <a 
+                href="#home" 
+                className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                onClick={closeMenu}
+              >
+                Home
+              </a>
+            </li>
+            <li className="hover:bg-purple-700 cursor-pointer">
+              <a 
+                href="#aboutus" 
+                className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                onClick={closeMenu}
+              >
+                About us
+              </a>
+            </li>
+            <li className="hover:bg-purple-700 cursor-pointer">
+              <a 
+                href="#projects" 
+                className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                onClick={closeMenu}
+              >
+                Projects
+              </a>
+            </li>
+            <li className="hover:bg-purple-700 cursor-pointer">
+              <a 
+                href="#testimonials" 
+                className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                onClick={closeMenu}
+              >
+                Testimonials
+              </a>
+            </li>
+            <li className="hover:bg-purple-700 cursor-pointer">
+              <a 
+                href="#contactus" 
+                className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                onClick={closeMenu}
+              >
+                Contact us
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
+    </nav>
 
       {/* Hero Section */}
-      <section className="text-center py-24 px-4 flex flex-row  h-screen " id="home">
-        <div className="w-1/2 justify-center align-middle">
-          <h3 className="text-3xl font-bold text-gray-700 mb-2">HI!</h3>
-          <h1 className="text-6xl font-extrabold text-gray-800 leading-tight">We Are Team</h1>
-          <h1 className="text-6xl font-extrabold text-gray-800 mb-6">Slog</h1>
-          
-          <button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-6 rounded-full font-semibold hover:bg-purple-700 transition">
-            <a href="#projects">Visit our Works</a>
-          </button>
-        </div>
-        <div className="robot w-1/2">
-
-           <Spline
-        scene="https://prod.spline.design/v6sI3ywtWJm3xqFg/scene.splinecode" 
-        />
-        </div>
-      </section>
+     <section className="text-center py-12 md:py-24 px-4 flex flex-col lg:flex-row min-h-screen lg:h-screen" id="home">
+  <div className="w-full lg:w-1/2 flex flex-col justify-center items-center mb-8 lg:mb-0">
+    <h3 className="text-2xl md:text-3xl font-bold text-gray-700 mb-2">HI!</h3>
+    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 leading-tight">We Are Team</h1>
+    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 mb-6">Slog</h1>
+    
+    <button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-8 rounded-full font-semibold hover:bg-purple-700 transition">
+      <a href="#projects">Visit our Works</a>
+    </button>
+  </div>
+  <div className="robot w-full lg:w-1/2 h-64 md:h-96 lg:h-full">
+    <Spline
+      scene="https://prod.spline.design/v6sI3ywtWJm3xqFg/scene.splinecode" 
+    />
+  </div>
+</section>
 
       {/* About Section */}
       <section className="min-h-screen bg-gray-50 flex items-center justify-center p-8" id="aboutus">
@@ -134,8 +211,7 @@ function App() {
         </div>
       </section>
 
-      {/* Portfolio Section */}
-      <section className="py-20 bg-gray-50">
+  <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-gray-600 text-lg mb-4">What We Did ?</p>
@@ -150,27 +226,39 @@ function App() {
                 key={project.id}
                 className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
               >
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-white p-8 flex items-center justify-center">
-                    <div className="w-full h-full bg-gradient-to-br from-purple-100 to-blue-100 rounded-xl flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                          <project.icon className="w-8 h-8 text-white" />
-                        </div>
-                        <p className="text-gray-600 font-medium">{project.title}</p>
+                {/* Main container with background image */}
+                <div 
+                  className="aspect-square relative overflow-hidden bg-cover bg-center bg-no-repeat"
+                  style={{
+                    backgroundImage: `url(${project.img})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                >
+                  {/* Dark overlay for better contrast */}
+                  <div className="absolute inset-0 bg-black/30"></div>
+                  
+                  {/* Content overlay that shows on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-purple-600/90 via-purple-600/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center p-6">
+                    <div className="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl mx-auto mb-4 flex items-center justify-center">
+                        <project.icon className="w-8 h-8 text-white" />
                       </div>
+                      <h3 className="text-xl font-bold mb-4">{project.title}</h3>
+                      <a 
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white text-purple-600 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors inline-block"
+                      >
+                        View Project
+                      </a>
                     </div>
                   </div>
                   
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8">
-                    <a 
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white text-purple-600 px-6 py-2 rounded-full font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-gray-50"
-                    >
-                      View Project
-                    </a>
+                  {/* Title overlay always visible at bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                    <h3 className="text-white font-semibold text-lg">{project.title}</h3>
                   </div>
                 </div>
               </div>
