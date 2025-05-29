@@ -66,7 +66,7 @@ const projects = [
             <a href="#testimonials">Testimonials</a>
           </li>
           <li className="hover:text-purple-400 cursor-pointer">
-            <a href="#contactus">Contact us</a>
+            <a href="#contact-us">Contact us</a>
           </li>
         </ul>
         
