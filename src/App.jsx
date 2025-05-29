@@ -121,7 +121,7 @@ const projects = [
             </li>
             <li className="hover:bg-purple-700 cursor-pointer">
               <a 
-                href="#contactus" 
+                href="#contact-us" 
                 className="block px-8 py-3 hover:text-purple-300 transition-colors"
                 onClick={closeMenu}
               >
@@ -315,8 +315,8 @@ const projects = [
 
     
       {/* Footer */}
-      <footer className="bg-gray-50  py-12 border-t border-gray-200">
-        <div className="max-w-6xl mx-auto px-6">
+      <footer className="bg-gray-50  py-12 border-t border-gray-200" >
+        <div className="max-w-6xl mx-auto px-6" id="contact-us">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
        <div className="text-gray-500 text-sm text-center md:text-left">
   <p>Copyright © 2025 Slog | All rights reserved.</p>
