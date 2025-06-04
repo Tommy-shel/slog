@@ -329,9 +329,9 @@ const projects = [
             
            <div className="flex items-center gap-4">
   {[
-    { icon: Twitter, href: 'https://twitter.com/yourprofile' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/yourprofile' },
-    { icon: Instagram, href: 'https://instagram.com/yourprofile' },
+    { icon: Twitter, href: 'https://x.com/i/flow/login?redirect_after_login=%2FSlog_Agency' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/slog-agency-2917b3368/' },
+    { icon: Instagram, href: 'https://www.instagram.com/slog_agency/' },
     { icon: Rss, href: '/rss-feed.xml' }
   ].map((social, index) => (
     <a
