@@ -332,7 +332,7 @@ const projects = [
     { icon: Twitter, href: 'https://x.com/i/flow/login?redirect_after_login=%2FSlog_Agency' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/slog-agency-2917b3368/' },
     { icon: Instagram, href: 'https://www.instagram.com/slog_agency/' },
-    { icon: Rss, href: '/rss-feed.xml' }
+    { icon: Rss, href: 'https://slog-navy.vercel.app/' }
   ].map((social, index) => (
     <a
       key={index}
