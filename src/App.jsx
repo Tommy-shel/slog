@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { User, Code, BarChart3, Globe, Download, Facebook, Twitter, Instagram, Linkedin, Mail, Rss, Video, Palette, MessageCircle } from 'lucide-react';
 import secImg from './secImg.png'; 
 import Spline from "@splinetool/react-spline";
@@ -6,34 +6,67 @@ import Slog from './SLog.png';
 import webdesign from './webdesign.png';
 import ecom1 from './ecom1.png';
 import ecom2 from './ecom2.png';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(useGSAP);
+
 function App() {
+  const container = useRef(null);
+  const text1Ref = useRef(null);
+  const text2Ref = useRef(null);
+  const text3Ref = useRef(null);
 
-const projects = [
-  {
-    id: 1,
-    title: 'Web Design Project',
-    url: 'https://portal1234.my.canva.site/dagoxeuuhe0',
-    img: webdesign, 
-    icon: Code
-  },
-  {
-    id: 2,
-    title: 'ecommerce website Project',
-    url: 'https://riva7.odoo.com/',
-    img: ecom1, 
-    icon: Code
-  },
-  {
-    id: 3,
-    title: 'Web development Project',
-    url: 'https://www.orra.co.in/?srsltid=AfmBOoqEnvSksYtXU_SSDMtZhrQzMROM8_7ISJHuMV6q4YOMeF29F0Qq',
-    img: ecom2, 
-    icon: Code
-  }
-];
+  useGSAP(() => {
+    // Animate each text element with a stagger
+    gsap.from([text1Ref.current], {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      stagger: 0.3,
+      ease: "power3.inOut"
+    });
+    gsap.from([text2Ref.current], {
+      opacity: 0,
+      y: 50,
+      duration: 2,
+      stagger: 0.4,
+      ease: "power3.inOut"
+    });
+    gsap.from([text3Ref.current], {
+      opacity: 0,
+      y: 50,
+      duration: 3,
+      stagger: 0.4,
+      ease: "power3.inOut"
+    });
+  }, { scope: container });
 
+  const projects = [
+    {
+      id: 1,
+      title: 'Web Design Project',
+      url: 'https://portal1234.my.canva.site/dagoxeuuhe0',
+      img: webdesign, 
+      icon: Code
+    },
+    {
+      id: 2,
+      title: 'ecommerce website Project',
+      url: 'https://riva7.odoo.com/',
+      img: ecom1, 
+      icon: Code
+    },
+    {
+      id: 3,
+      title: 'Web development Project',
+      url: 'https://www.orra.co.in/?srsltid=AfmBOoqEnvSksYtXU_SSDMtZhrQzMROM8_7ISJHuMV6q4YOMeF29F0Qq',
+      img: ecom2, 
+      icon: Code
+    }
+  ];
 
-   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -43,116 +76,114 @@ const projects = [
     setIsMenuOpen(false);
   };
 
-
   return (
-    <div className="min-h-screen  text-gray-800 font-sans">
+    <div ref={container} className="min-h-screen text-gray-800 font-sans">
       {/* Navigation */}
-        
-     <nav className="relative bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-3xl shadow-lg m-4">
-      <div className="flex justify-between items-center px-8 py-4">
-        <div className="text-2xl h-10 flex justify-center items-center font-bold">
-          <img src={Slog} className="w-26 h-26" alt="Slog" />
+      <nav className="relative bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-3xl shadow-lg m-4">
+        <div className="flex justify-between items-center px-8 py-4">
+          <div className="text-2xl h-10 flex justify-center items-center font-bold">
+            <img src={Slog} className="w-26 h-26" alt="Slog" />
           </div>
-        
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6">
-          <li className="hover:text-purple-400 cursor-pointer">
-            <a href="#home">Home</a>
-          </li>
-          <li className="hover:text-purple-400 cursor-pointer">
-            <a href="#aboutus">About us</a>
-          </li>
-          <li className="hover:text-purple-400 cursor-pointer">
-            <a href="#projects">Projects</a>
-          </li>
-          <li className="hover:text-purple-400 cursor-pointer">
-            <a href="#testimonials">Testimonials</a>
-          </li>
-          <li className="hover:text-purple-400 cursor-pointer">
-            <a href="#contact-us">Contact us</a>
-          </li>
-        </ul>
-        
-        {/* Mobile Menu Button */}
-        <div 
-          className="md:hidden text-2xl cursor-pointer hover:text-purple-300 transition-colors"
-          onClick={toggleMenu}
-        >
-          {isMenuOpen ? '✕' : '☰'}
-        </div>
-      </div>
-      
-      {/* Mobile Dropdown Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-b-3xl shadow-lg z-50">
-          <ul className="flex flex-col py-4">
-            <li className="hover:bg-purple-700 cursor-pointer">
-              <a 
-                href="#home" 
-                className="block px-8 py-3 hover:text-purple-300 transition-colors"
-                onClick={closeMenu}
-              >
-                Home
-              </a>
+          
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex space-x-6">
+            <li className="hover:text-purple-400 cursor-pointer">
+              <a href="#home">Home</a>
             </li>
-            <li className="hover:bg-purple-700 cursor-pointer">
-              <a 
-                href="#aboutus" 
-                className="block px-8 py-3 hover:text-purple-300 transition-colors"
-                onClick={closeMenu}
-              >
-                About us
-              </a>
+            <li className="hover:text-purple-400 cursor-pointer">
+              <a href="#aboutus">About us</a>
             </li>
-            <li className="hover:bg-purple-700 cursor-pointer">
-              <a 
-                href="#projects" 
-                className="block px-8 py-3 hover:text-purple-300 transition-colors"
-                onClick={closeMenu}
-              >
-                Projects
-              </a>
+            <li className="hover:text-purple-400 cursor-pointer">
+              <a href="#projects">Projects</a>
             </li>
-            <li className="hover:bg-purple-700 cursor-pointer">
-              <a 
-                href="#testimonials" 
-                className="block px-8 py-3 hover:text-purple-300 transition-colors"
-                onClick={closeMenu}
-              >
-                Testimonials
-              </a>
+            <li className="hover:text-purple-400 cursor-pointer">
+              <a href="#testimonials">Testimonials</a>
             </li>
-            <li className="hover:bg-purple-700 cursor-pointer">
-              <a 
-                href="#contact-us" 
-                className="block px-8 py-3 hover:text-purple-300 transition-colors"
-                onClick={closeMenu}
-              >
-                Contact us
-              </a>
+            <li className="hover:text-purple-400 cursor-pointer">
+              <a href="#contact-us">Contact us</a>
             </li>
           </ul>
+          
+          {/* Mobile Menu Button */}
+          <div 
+            className="md:hidden text-2xl cursor-pointer hover:text-purple-300 transition-colors"
+            onClick={toggleMenu}
+          >
+            {isMenuOpen ? '✕' : '☰'}
+          </div>
         </div>
-      )}
-    </nav>
+        
+        {/* Mobile Dropdown Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-b-3xl shadow-lg z-50">
+            <ul className="flex flex-col py-4">
+              <li className="hover:bg-purple-700 cursor-pointer">
+                <a 
+                  href="#home" 
+                  className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                  onClick={closeMenu}
+                >
+                  Home
+                </a>
+              </li>
+              <li className="hover:bg-purple-700 cursor-pointer">
+                <a 
+                  href="#aboutus" 
+                  className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                  onClick={closeMenu}
+                >
+                  About us
+                </a>
+              </li>
+              <li className="hover:bg-purple-700 cursor-pointer">
+                <a 
+                  href="#projects" 
+                  className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                  onClick={closeMenu}
+                >
+                  Projects
+                </a>
+              </li>
+              <li className="hover:bg-purple-700 cursor-pointer">
+                <a 
+                  href="#testimonials" 
+                  className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                  onClick={closeMenu}
+                >
+                  Testimonials
+                </a>
+              </li>
+              <li className="hover:bg-purple-700 cursor-pointer">
+                <a 
+                  href="#contact-us" 
+                  className="block px-8 py-3 hover:text-purple-300 transition-colors"
+                  onClick={closeMenu}
+                >
+                  Contact us
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
+      </nav>
 
       {/* Hero Section */}
-     <section className="text-center py-12 md:py-24 px-4 flex flex-col lg:flex-row min-h-screen lg:h-screen" id="home">
-  <div className="w-full lg:w-1/2 flex flex-col justify-center items-center mb-8 lg:mb-0">
-    <h3 className="text-2xl md:text-3xl font-bold text-gray-700 mb-2">HI!</h3>
-    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 leading-tight">We Are Team</h1>
-    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 mb-6">Slog</h1>
-    
-    <button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-8 rounded-full font-semibold hover:bg-purple-700 transition">
-      <a href="#projects">Visit our Works</a>
-    </button>
-  </div>
-  <div className="robot w-full lg:w-1/2 h-64 md:h-96 lg:h-full">
-    <Spline
-      scene="https://prod.spline.design/v6sI3ywtWJm3xqFg/scene.splinecode" 
-    />
-  </div>
-</section>
+      <section className="text-center py-12 md:py-24 px-4 flex flex-col lg:flex-row min-h-screen lg:h-screen" id="home">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center mb-8 lg:mb-0">
+          <h3 ref={text1Ref} className="text-2xl md:text-3xl font-bold text-gray-700 mb-2">HI!</h3>
+          <h1 ref={text2Ref} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 leading-tight">We Are Team</h1>
+          <h1 ref={text3Ref} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 mb-6">Slog</h1>
+          
+          <button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-8 rounded-full font-semibold hover:bg-purple-700 transition">
+            <a href="#projects">Visit our Works</a>
+          </button>
+        </div>
+        <div className="robot w-full lg:w-1/2 h-64 md:h-96 lg:h-full">
+          <Spline
+            scene="https://prod.spline.design/v6sI3ywtWJm3xqFg/scene.splinecode" 
+          />
+        </div>
+      </section>
 
       {/* About Section */}
       <section className="min-h-screen bg-gray-50 flex items-center justify-center p-8" id="aboutus">
@@ -214,7 +245,7 @@ const projects = [
         </div>
       </section>
 
-  <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-gray-600 text-lg mb-4">What We Did ?</p>
@@ -316,35 +347,33 @@ const projects = [
         </div>
       </section>
 
-    
       {/* Footer */}
       <footer className="bg-gray-50  py-12 border-t border-gray-200" >
         <div className="max-w-6xl mx-auto px-6" id="contact-us">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-       <div className="text-gray-500 text-sm text-center md:text-left">
-  <p>Copyright © 2025 Slog | All rights reserved.</p>
-  <p>Contact No: 8591883398 | Gmail: Slogagency1@gmail.com</p>
-</div>
+            <div className="text-gray-500 text-sm text-center md:text-left">
+              <p>Copyright © 2025 Slog | All rights reserved.</p>
+              <p>Contact No: 8591883398 | Gmail: Slogagency1@gmail.com</p>
+            </div>
 
-            
-           <div className="flex items-center gap-4">
-  {[
-    { icon: Twitter, href: 'https://x.com/i/flow/login?redirect_after_login=%2FSlog_Agency' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/slog-agency-2917b3368/' },
-    { icon: Instagram, href: 'https://www.instagram.com/slog_agency/' },
-    { icon: Rss, href: 'https://slog-navy.vercel.app/' }
-  ].map((social, index) => (
-    <a
-      key={index}
-      href={social.href}
-      target={social.href.startsWith('http') || social.href.startsWith('mailto') ? "_blank" : undefined}
-      rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
-      className="w-10 h-10 bg-gray-100 hover:bg-purple-100 rounded-full flex items-center justify-center text-gray-600 hover:text-purple-600 transition-all duration-300 hover:transform hover:-translate-y-1"
-    >
-      <social.icon className="w-5 h-5" />
-    </a>
-  ))}
-</div>
+            <div className="flex items-center gap-4">
+              {[
+                { icon: Twitter, href: 'https://x.com/i/flow/login?redirect_after_login=%2FSlog_Agency' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/slog-agency-2917b3368/' },
+                { icon: Instagram, href: 'https://www.instagram.com/slog_agency/' },
+                { icon: Rss, href: 'https://slog-navy.vercel.app/' }
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target={social.href.startsWith('http') || social.href.startsWith('mailto') ? "_blank" : undefined}
+                  rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                  className="w-10 h-10 bg-gray-100 hover:bg-purple-100 rounded-full flex items-center justify-center text-gray-600 hover:text-purple-600 transition-all duration-300 hover:transform hover:-translate-y-1"
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </footer>
